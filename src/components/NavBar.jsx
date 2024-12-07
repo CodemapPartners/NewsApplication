@@ -24,7 +24,7 @@ export default function NavBar({ setCategory, setSearchQuery }) {
   return (
     <>
       <header className="text-gray-400 bg-gray-900 body-font sticky top-0 z-0">
-        <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <div className="container mx-auto flex flex-wrap p-5 gap-x-4 gap-y-6 flex-col md:flex-row items-center">
           <a className="flex title-font font-medium items-center text-white mb-4 md:mb-0">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -40,17 +40,47 @@ export default function NavBar({ setCategory, setSearchQuery }) {
             </svg>
             <span className="ml-3 text-xl cursor-pointer">NEWSFORYOU</span>
           </a>
-          <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700 flex flex-wrap items-center text-base justify-center">
-            <a className="mr-5 hover:text-white cursor-pointer" onClick={updateCategory}>Politics</a>
-            <a className="mr-5 hover:text-white cursor-pointer" onClick={updateCategory}>Entertainment</a>
-            <a className="mr-5 hover:text-white cursor-pointer" onClick={updateCategory}>Health</a>
-            <a className="mr-5 hover:text-white cursor-pointer" onClick={updateCategory}>Science</a>
-            <a className="mr-5 hover:text-white cursor-pointer" onClick={updateCategory}>Sports</a>
-            <a className="mr-5 hover:text-white cursor-pointer" onClick={updateCategory}>Technology</a>
+          <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700 flex flex-wrap items-center text-base justify-center gap-y-4">
+            <a
+              className="mr-5 hover:text-white cursor-pointer"
+              onClick={updateCategory}
+            >
+              Politics
+            </a>
+            <a
+              className="mr-5 hover:text-white cursor-pointer"
+              onClick={updateCategory}
+            >
+              Entertainment
+            </a>
+            <a
+              className="mr-5 hover:text-white cursor-pointer"
+              onClick={updateCategory}
+            >
+              Health
+            </a>
+            <a
+              className="mr-5 hover:text-white cursor-pointer"
+              onClick={updateCategory}
+            >
+              Science
+            </a>
+            <a
+              className="mr-5 hover:text-white cursor-pointer"
+              onClick={updateCategory}
+            >
+              Sports
+            </a>
+            <a
+              className="mr-5 hover:text-white cursor-pointer"
+              onClick={updateCategory}
+            >
+              Technology
+            </a>
           </nav>
 
           {/* Search Box */}
-          <form onSubmit={handleSearchSubmit} className="flex items-center ml-auto">
+          <form onSubmit={handleSearchSubmit} className="flex items-center">
             <input
               type="text"
               value={searchQuery}
