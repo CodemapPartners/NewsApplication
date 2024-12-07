@@ -9,7 +9,9 @@ const News = () => {
   useEffect(() => {
     axios
       .get(
-        "https://newsapi.org/v2/everything?q=Adani&from=2024-11-07&sortBy=publishedAt&apiKey=682f44d3b52943a79f1af98e64fef9f8"
+        `https://newsapi.org/v2/everything?q=Adani&from=2024-11-07&sortBy=publishedAt&apiKey=${
+          import.meta.env.VITE_APP_ApiKey
+        }`
       )
       .then((res) => {
         setData(res.data.articles);
