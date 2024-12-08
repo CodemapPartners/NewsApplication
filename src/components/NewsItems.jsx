@@ -6,16 +6,21 @@ import { Link } from "react-router-dom";
 const NewsItems = ({ title, description, url, author, urlToImage, date }) => {
   return (
     <>
-      <div className="cardHolder bg-[#fff] pb-10 p-2 w-[85vw] md:w-[68%] lg:w-[30%] 2xl:h-[65vmin] 2xl:pb-10">
-        <div className="ImageHolder ">
-          <img src={urlToImage} />
+      <div className="cardHolder bg-[#dcdcdc] p-1 pb-6  w-[85vw] md:w-[68%] lg:w-[30%] 2xl:h-[65vmin] 2xl:pb-10 rounded-lg">
+        <div className="ImageHolder h-[50vmin] lg:h-[33vmin]   w-[100%] flex justify-center items-center">
+          <img
+            src={urlToImage}
+            className="max-w-full max-h-full object-contain"
+          />
         </div>
 
-        <div className="textHolder flex flex-col  justify-center gap-y-4">
-          <h1 className="title  text-[4vmin] lg:text-[3vmin]">{title}</h1>
+        <div className="textHolder flex flex-col  justify-center gap-y-3">
+          <h1 className="title  text-[4vmin] lg:text-[3vmin]">
+            {title.slice(0, 30) + "..."}
+          </h1>
 
           <p className="supportText1 pl-2 pr-2 text-[3.5vmin] md:text-[2.35vmin]">
-            <b>Author:</b>&nbsp;{author}
+            <b>Author:</b>&nbsp;{!author ? "self source" : author}
           </p>
           <p className="supportText3 pl-2  text-[3.5vmin] md:text-[2.25vmin]">
             <a href={url} target="_blank">
