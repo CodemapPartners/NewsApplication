@@ -25,9 +25,7 @@ const NavBar = () => {
   const fetchData = () => {
     console.log("API Called");
     axios
-      .get(
-        "https://newsapi.org/v2/everything?q=tesla&from=2024-11-08&sortBy=publishedAt&apiKey=682f44d3b52943a79f1af98e64fef9f8"
-      )
+      .get(`https://saurav.tech/NewsAPI/everything/cnn.json`)
       .then((res) => {
         setData(JSON.stringify(res.data.articles));
       })
@@ -135,19 +133,17 @@ const NavBar = () => {
 
             {search != garbageString && search != "" && (
               <div className="searchArea p-4 w-[50vmin] bg-white rounded-md mt-1 flex flex-col gap-y-3">
-                {JSON.parse(data)
-                  .slice(0, 3)
-                  .filter(
-                    (val) =>
-                      JSON.stringify(val.title.toLowerCase()).includes(
-                        search.toLowerCase()
-                      ) === true ||
-                      JSON.stringify(val.description.toLowerCase()).includes(
-                        search.toLowerCase()
-                      ) === true
-                  ).length > 0 ? (
+                {JSON.parse(data).filter(
+                  (val) =>
+                    JSON.stringify(val.title.toLowerCase()).includes(
+                      search.toLowerCase()
+                    ) === true ||
+                    JSON.stringify(val.description.toLowerCase()).includes(
+                      search.toLowerCase()
+                    ) === true
+                ).length > 0 ? (
                   JSON.parse(data)
-                    .slice(0, 3)
+                    .slice(0, 4)
                     .filter(
                       (val) =>
                         JSON.stringify(val.title.toLowerCase()).includes(
