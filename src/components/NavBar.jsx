@@ -76,7 +76,7 @@ const NavBar = () => {
             <a
               className="mr-5 hover:text-white cursor-pointer"
               onClick={() => {
-                updateCategory("Entertainment");
+                updateCategory("entertainment");
               }}
             >
               Entertainment
@@ -84,7 +84,7 @@ const NavBar = () => {
             <a
               className="mr-5 hover:text-white cursor-pointer"
               onClick={() => {
-                updateCategory("Health");
+                updateCategory("health");
               }}
             >
               Health
@@ -92,7 +92,7 @@ const NavBar = () => {
             <a
               className="mr-5 hover:text-white cursor-pointer"
               onClick={() => {
-                updateCategory("Science");
+                updateCategory("science");
               }}
             >
               Science
@@ -100,7 +100,7 @@ const NavBar = () => {
             <a
               className="mr-5 hover:text-white cursor-pointer"
               onClick={() => {
-                updateCategory("Sports");
+                updateCategory("sports");
               }}
             >
               Sports
@@ -108,7 +108,7 @@ const NavBar = () => {
             <a
               className="mr-5 hover:text-white cursor-pointer"
               onClick={() => {
-                updateCategory("Technology");
+                updateCategory("technology");
               }}
             >
               Technology
