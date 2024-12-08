@@ -1,31 +1,25 @@
 import React, { useState } from "react";
+import { userContext } from "../Utils/userContext";
+import { useContext } from "react";
 
-export default function NavBar({ setCategory, setSearchQuery }) {
-  const [searchQuery, setSearchQueryLocal] = useState("");
-
-  function updateCategory(e) {
-    setCategory(e.target.textContent.toLowerCase());
-  }
-
-  // Handle search input change
-  function handleSearchChange(e) {
-    setSearchQueryLocal(e.target.value);
-    setSearchQuery(e.target.value); // Pass the search query to the parent component
-  }
-
-  // Handle form submit
-  function handleSearchSubmit(e) {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      // You can implement search functionality here if needed
-    }
-  }
+export default function NavBar() {
+  const { category, setCategory } = useContext(userContext);
+  const [search, setSearch] = useState("");
+  const updateCategory = (category) => {
+    setCategory(category);
+    console.log(category);
+  };
 
   return (
     <>
       <header className="text-gray-400 bg-gray-900 body-font sticky top-0 z-0">
         <div className="container mx-auto flex flex-wrap p-5 gap-x-4 gap-y-6 flex-col md:flex-row items-center">
-          <a className="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+          <a
+            onClick={() => {
+              updateCategory("general");
+            }}
+            className="flex title-font font-medium items-center text-white mb-4 md:mb-0"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -43,48 +37,53 @@ export default function NavBar({ setCategory, setSearchQuery }) {
           <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700 flex flex-wrap items-center text-base justify-center gap-y-4">
             <a
               className="mr-5 hover:text-white cursor-pointer"
-              onClick={updateCategory}
-            >
-              Politics
-            </a>
-            <a
-              className="mr-5 hover:text-white cursor-pointer"
-              onClick={updateCategory}
+              onClick={() => {
+                updateCategory("Entertainment");
+              }}
             >
               Entertainment
             </a>
             <a
               className="mr-5 hover:text-white cursor-pointer"
-              onClick={updateCategory}
+              onClick={() => {
+                updateCategory("Health");
+              }}
             >
               Health
             </a>
             <a
               className="mr-5 hover:text-white cursor-pointer"
-              onClick={updateCategory}
+              onClick={() => {
+                updateCategory("Science");
+              }}
             >
               Science
             </a>
             <a
               className="mr-5 hover:text-white cursor-pointer"
-              onClick={updateCategory}
+              onClick={() => {
+                updateCategory("Sports");
+              }}
             >
               Sports
             </a>
             <a
               className="mr-5 hover:text-white cursor-pointer"
-              onClick={updateCategory}
+              onClick={() => {
+                updateCategory("Technology");
+              }}
             >
               Technology
             </a>
           </nav>
 
           {/* Search Box */}
-          <form onSubmit={handleSearchSubmit} className="flex items-center">
+          <form className="w-[50vmin]">
             <input
               type="text"
-              value={searchQuery}
-              onChange={handleSearchChange}
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
               placeholder="Search news..."
               className="px-4 py-2 text-gray-800 rounded-l-md focus:outline-none"
             />
@@ -94,6 +93,7 @@ export default function NavBar({ setCategory, setSearchQuery }) {
             >
               Search
             </button>
+            <div className="searchArea h-[30vmin] w-[45vmin] bg-white rounded-md mt-1"></div>
           </form>
         </div>
       </header>
