@@ -13,11 +13,7 @@ const News = () => {
   useEffect(() => {
     if (category === "general" && searchItem === "") {
       axios
-        .get(
-          `https://newsapi.org/v2/everything?q=Adani&from=2024-11-08&sortBy=publishedAt&apiKey=${
-            import.meta.env.VITE_APP_ApiKey
-          }`
-        )
+        .get(`https://saurav.tech/NewsAPI/everything/cnn.json`)
         .then((res) => {
           setData(res.data.articles);
         })
