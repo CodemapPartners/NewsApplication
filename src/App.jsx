@@ -8,13 +8,18 @@ import Footer from "./components/Footer";
 
 function App() {
   const [category, setCategory] = useState("general");
-
+  const [searchItem, setSearchItem] = useState("");
   const [progress, setProgress] = useState(0);
 
   return (
     <>
       <userContext.Provider
-        value={{ category: category, setCategory: setCategory }}
+        value={{
+          category: category,
+          setCategory: setCategory,
+          searchItem: searchItem,
+          setSearchItem: setSearchItem,
+        }}
       >
         <NavBar />
         <LoadingBar

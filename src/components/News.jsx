@@ -6,11 +6,12 @@ import NewsItems from "./NewsItems";
 import { userContext } from "../Utils/userContext";
 import { useContext } from "react";
 const News = () => {
-  const { category, setCategory } = useContext(userContext);
+  const { category, setCategory, searchItem, setSearchItem } =
+    useContext(userContext);
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    if (category === "general") {
+    if (category === "general" && searchItem === "") {
       axios
         .get(
           `https://newsapi.org/v2/everything?q=Adani&from=2024-11-08&sortBy=publishedAt&apiKey=${
@@ -19,6 +20,23 @@ const News = () => {
         )
         .then((res) => {
           setData(res.data.articles);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    } else if (searchItem != "" && category === "") {
+      // console.log(searchItem);
+      axios
+        .get(
+          `https://newsapi.org/v2/everything?q=tesla&from=2024-11-08&sortBy=publishedAt&apiKey=${
+            import.meta.env.VITE_APP_ApiKey
+          }`
+        )
+        .then((res) => {
+          // setData(res.data.articles);
+          console.log(res.data.articles);
+
+          setData(res.data.articles.filter((val) => val.title === searchItem));
         })
         .catch((err) => {
           console.log(err);
@@ -37,7 +55,7 @@ const News = () => {
           console.log(err);
         });
     }
-  }, [category]);
+  }, [category, searchItem]);
 
   return (
     <>
@@ -45,7 +63,7 @@ const News = () => {
         {(data.length > 0 &&
           data
             .filter((val) => val.urlToImage != null)
-            .slice(1, 10) // Show only the first 10 articles
+            .slice(0, 10) // Show only the first 10 articles
             .map((item, index) => <NewsItems {...item} />)) || (
           <>
             <SkeletonCard />
