@@ -23,14 +23,10 @@ const News = () => {
     } else if (searchItem != "" && category === "") {
       // console.log(searchItem);
       axios
-        .get(
-          `https://newsapi.org/v2/everything?q=tesla&from=2024-11-08&sortBy=publishedAt&apiKey=${
-            import.meta.env.VITE_APP_ApiKey
-          }`
-        )
+        .get(`https://saurav.tech/NewsAPI/everything/cnn.json`)
         .then((res) => {
-          // setData(res.data.articles);
-          console.log(res.data.articles);
+          // // setData(res.data.articles);
+          // console.log(res.data.articles);
 
           setData(res.data.articles.filter((val) => val.title === searchItem));
         })
@@ -40,9 +36,7 @@ const News = () => {
     } else {
       axios
         .get(
-          `https://newsapi.org/v2/top-headlines?country=us&category=${category}&apiKey=${
-            import.meta.env.VITE_APP_ApiKey
-          }`
+          `https://saurav.tech/NewsAPI/top-headlines/category/${category}/in.json`
         )
         .then((res) => {
           setData(res.data.articles);
