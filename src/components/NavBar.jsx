@@ -1,14 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { userContext } from "../Utils/userContext";
 import { useContext } from "react";
+import axios from "axios";
 
-export default function NavBar() {
-  const { category, setCategory } = useContext(userContext);
-  const [search, setSearch] = useState("");
+const NavBar = () => {
+  const { category, setCategory, searchItem, setSearchItem } =
+    useContext(userContext);
+  const garbageString = import.meta.env.VITE_APP_GarbageString;
+  const [search, setSearch] = useState(garbageString);
+  const [data, setData] = useState([]);
   const updateCategory = (category) => {
     setCategory(category);
-    console.log(category);
+    setSearchItem("");
   };
+
+  const clickSearch = (val) => {
+    setCategory("");
+    setSearchItem(val);
+    document.getElementById("searchBox").value = "";
+    setSearch("");
+  };
+  /* Debouncing Code */
+
+  const fetchData = () => {
+    console.log("API Called");
+    axios
+      .get(
+        "https://newsapi.org/v2/everything?q=tesla&from=2024-11-08&sortBy=publishedAt&apiKey=682f44d3b52943a79f1af98e64fef9f8"
+      )
+      .then((res) => {
+        setData(JSON.stringify(res.data.articles));
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchData();
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  const handleChange = (e) => {
+    setSearch(e.target.value);
+    console.log(search);
+  };
+
+  /* Debouncing Code ends here */
 
   return (
     <>
@@ -81,9 +121,8 @@ export default function NavBar() {
           <form className="w-[50vmin]">
             <input
               type="text"
-              onChange={(e) => {
-                setSearch(e.target.value);
-              }}
+              id="searchBox"
+              onChange={handleChange}
               placeholder="Search news..."
               className="px-4 py-2 text-gray-800 rounded-l-md focus:outline-none"
             />
@@ -93,10 +132,50 @@ export default function NavBar() {
             >
               Search
             </button>
-            <div className="searchArea h-[30vmin] w-[45vmin] bg-white rounded-md mt-1"></div>
+
+            {search != garbageString && search != "" && (
+              <div className="searchArea p-4 w-[50vmin] bg-white rounded-md mt-1 flex flex-col gap-y-3">
+                {JSON.parse(data)
+                  .slice(0, 3)
+                  .filter(
+                    (val) =>
+                      JSON.stringify(val.title.toLowerCase()).includes(
+                        search.toLowerCase()
+                      ) === true ||
+                      JSON.stringify(val.description.toLowerCase()).includes(
+                        search.toLowerCase()
+                      ) === true
+                  ).length > 0 ? (
+                  JSON.parse(data)
+                    .slice(0, 3)
+                    .filter(
+                      (val) =>
+                        JSON.stringify(val.title.toLowerCase()).includes(
+                          search.toLowerCase()
+                        ) === true ||
+                        JSON.stringify(val.description.toLowerCase()).includes(
+                          search.toLowerCase()
+                        ) === true
+                    )
+                    .map((val, index) => (
+                      <p
+                        onClick={() => {
+                          clickSearch(val.title);
+                        }}
+                      >
+                        {val.title}
+                      </p>
+                    ))
+                ) : (
+                  <p>No matches found</p>
+                )}
+              </div>
+            )}
           </form>
         </div>
       </header>
     </>
   );
-}
+};
+
+export default NavBar;
