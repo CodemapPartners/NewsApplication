@@ -72,7 +72,7 @@ const NavBar = () => {
             </svg>
             <span className="ml-3 text-xl cursor-pointer">NEWSFORYOU</span>
           </a>
-          <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700 flex flex-wrap items-center text-base justify-center gap-y-4 2xl:text-[2.25vmin]">
+          <nav className="md:mr-auto md:ml-4 md:py-1 md:pl-4 md:border-l md:border-gray-700 flex flex-wrap items-center text-base justify-center gap-y-4 2xl:text-[2.15vmin]">
             <a
               className="mr-5 hover:text-white cursor-pointer"
               onClick={() => {
