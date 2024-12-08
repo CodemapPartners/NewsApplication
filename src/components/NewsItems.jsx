@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const NewsItems = ({ title, description, url, author, urlToImage, date }) => {
   return (
     <>
-      <div className="cardHolder bg-[#dcdcdc] p-1 pb-6  w-[85vw] md:w-[68%] lg:w-[30%] 2xl:h-[62vmin] 2xl:pb-5 rounded-lg">
+      <div className="cardHolder bg-[#dcdcdc] p-1 pb-6  w-[85vw] md:w-[68%] lg:w-[30%] 2xl:h-[62vmin] 2xl:pb-3 rounded-lg">
         <div className="ImageHolder h-[50vmin] lg:h-[33vmin]   w-[100%] flex justify-center items-center">
           <img
              src={
@@ -20,7 +20,7 @@ const NewsItems = ({ title, description, url, author, urlToImage, date }) => {
 
         <div className="textHolder flex flex-col  justify-center gap-y-3">
           <h1 className="title  text-[4vmin] lg:text-[3vmin]">
-            {title.slice(0, 38) + "..."}
+            {title.slice(0, 35) + "..."}
           </h1>
 
           <p className="supportText1 pl-2 pr-2 text-[3.5vmin] md:text-[2.35vmin]">
