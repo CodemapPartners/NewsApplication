@@ -18,7 +18,7 @@ const NewsItems = ({ title, description, url, author, urlToImage, date }) => {
           />
         </div>
 
-        <div className="textHolder flex flex-col  justify-center gap-y-3">
+        <div className="textHolder flex flex-col  justify-center gap-y-5">
           <h1 className="title  text-[4vmin] lg:text-[3vmin]">
             {title.slice(0, 35) + "..."}
           </h1>
