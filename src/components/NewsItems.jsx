@@ -9,7 +9,11 @@ const NewsItems = ({ title, description, url, author, urlToImage, date }) => {
       <div className="cardHolder bg-[#dcdcdc] p-1 pb-6  w-[85vw] md:w-[68%] lg:w-[30%] 2xl:h-[65vmin] 2xl:pb-10 rounded-lg">
         <div className="ImageHolder h-[50vmin] lg:h-[33vmin]   w-[100%] flex justify-center items-center">
           <img
-            src={urlToImage}
+             src={
+              urlToImage
+                ? urlToImage
+                : "https://propertywiselaunceston.com.au/wp-content/themes/property-wise/images/no-image@2x.png"
+            }
             className="max-w-full max-h-full object-contain"
           />
         </div>
